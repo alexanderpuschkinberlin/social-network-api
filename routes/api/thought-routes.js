@@ -2,13 +2,13 @@ const router = require("express").Router();
 
 // request handler
 const {
-  getAllThought,
-  getThoughtById,
+  getThoughts,
+  getSingleThought,
   createThought,
   updateThought,
   deleteThought,
   addReaction,
-  deleteReaction,
+  removeReaction,
 } = require("../../controllers/thought-controller");
 
 router.route("/").get(getAllThought);
