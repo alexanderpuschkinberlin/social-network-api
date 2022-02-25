@@ -24,10 +24,12 @@ const getSingleThought = async (req, res) => {
 
 //create thought
 const createThought = async (req, res) => {
+  console.log(req.body);
   try {
     const newThought = await Thought.create(req.body);
+    console.log(newThought);
     const updatedUser = await User.findOneAndUpdate(
-      { _id: req.body.userId },
+      { _id: req.params.userId },
       { $push: { thoughts: newThought._id } },
       { new: true }
     );
@@ -95,7 +97,7 @@ const removeReaction = async (req, res) => {
       { $pull: { reactions: { reactionId: req.params.reactionId } } },
       { runValidators: true, new: true }
     );
-    res.json(updatedUser);
+    res.json(updatedThought);
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
